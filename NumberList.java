@@ -1,0 +1,62 @@
+package org.example;
+import java.util.ArrayList;
+import java.util.List;
+
+public class NumberList {
+    public static void main(String[] args) {
+        List<Number> numbers = new ArrayList<>();
+        numbers.add(Integer.parseInt("5"));
+        numbers.add(Double.parseDouble("1.17"));
+        numbers.add(Float.parseFloat("73.37"));
+        numbers.add(Long.parseLong("17"));
+
+        System.out.println("Всі числа: " + numbers);
+
+        System.out.print("Цілі числа: ");
+        for (Number number : numbers) {
+            if (number instanceof Integer) {
+                System.out.print(number + " ");
+            } else {
+                System.out.print(Integer.parseInt(String.valueOf(number.intValue())) + " ");
+            }
+        }
+        System.out.println();
+
+        System.out.print("Дробові числа: ");
+        for (Number number : numbers) {
+            String formattedNumber = String.format("%.2f", number.doubleValue());
+            System.out.print(formattedNumber + " ");
+        }
+        System.out.println();
+
+        List<Integer> integers = new ArrayList<>();
+        List<Double> doubles = new ArrayList<>();
+        List<Float> floats = new ArrayList<>();
+        List<Long> longs = new ArrayList<>();
+
+        for (Number number : numbers) {
+            if (number instanceof Integer) {
+                integers.add((Integer) number);
+            } else if (number instanceof Double) {
+                doubles.add((Double) number);
+            } else if (number instanceof Float) {
+                floats.add((Float) number);
+            } else if (number instanceof Long) {
+                longs.add((Long) number);
+            }
+        }
+
+        System.out.println("Integers: " + integers);
+        System.out.println("Doubles: " + doubles);
+        System.out.println("Floats: " + floats);
+        System.out.println("Longs: " + longs);
+
+        double sum = 0;
+        for (Number number : numbers) {
+            sum += number.doubleValue();
+        }
+        double average = sum / numbers.size();
+        System.out.printf("Середнє значення: %.2f", average);
+
+    }
+}
