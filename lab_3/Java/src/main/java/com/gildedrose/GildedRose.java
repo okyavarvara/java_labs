@@ -19,17 +19,19 @@ class GildedRose {
     }
 
     private void updateItem(Item item) {
-        if (item.name.equals(AGED_BRIE)) {
+        String itemName = item.name;
+        
+        if (itemName.equals(AGED_BRIE)) {
             updateAgedBrieQuality(item);
             return;
         }
 
-        if (item.name.equals(BACKSTAGE_PASSES)) {
+        if (itemName.equals(BACKSTAGE_PASSES)) {
             updateBackstagePassesQuality(item);
             return;
         }
 
-        if (item.name.equals(SULFURAS)) {
+        if (itemName.equals(SULFURAS)) {
             updateSulfurasQuality(item);
             return;
         }
@@ -58,7 +60,6 @@ class GildedRose {
     }
 
     private void updateSulfurasQuality(Item item) {
-        // Sulfuras quality does not change, no need for any logic here
     }
 
     private void updateDefaultQuality(Item item) {
@@ -74,22 +75,23 @@ class GildedRose {
     }
 
     private void handleExpiredItem(Item item) {
-    if (item.sellIn < 0) {
-        if (item.name.equals(AGED_BRIE)) {
-            if (item.quality < 50) {
-                item.quality += 1;
+        if (item.sellIn < 0) {
+            String itemName = item.name;
+            if (itemName.equals(AGED_BRIE)) {
+                if (item.quality < 50) {
+                    item.quality += 1;
+                }
+                return;
             }
-            return;
-        }
 
-        if (item.name.equals(BACKSTAGE_PASSES)) {
-            item.quality = 0;
-            return;
-        }
+            if (itemName.equals(BACKSTAGE_PASSES)) {
+                item.quality = 0;
+                return;
+            }
 
-        if (item.quality > 0 && !item.name.equals(SULFURAS)) {
-            item.quality -= 1;
+            if (item.quality > 0 && !itemName.equals(SULFURAS)) {
+                item.quality -= 1;
+            }
         }
     }
-}
 }
