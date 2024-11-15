@@ -19,43 +19,31 @@ class GildedRose {
 
     private void updateItem(Item item) {
         if (item.name.equals(AGED_BRIE)) {
-            updateAgedBrieQuality(item);
+            updateQualityForItem(item, 1);
         } else if (item.name.equals(BACKSTAGE_PASSES)) {
             updateBackstagePassQuality(item);
         } else if (!item.name.equals(SULFURAS)) {
-            updateDefaultItemQuality(item);
+            updateQualityForItem(item, -1);
         }
         updateSellIn(item);
         handleExpiredItem(item);
     }
 
-    private void updateAgedBrieQuality(Item item) {
-        if (item.quality < 50) {
-            item.quality += 1;
+    private void updateQualityForItem(Item item, int change) {
+        if (item.quality + change <= 50 && item.quality + change >= 0) {
+            item.quality += change;
         }
     }
 
     private void updateBackstagePassQuality(Item item) {
-        if (item.quality < 50) {
-            item.quality += 1;
-        }
+        updateQualityForItem(item, 1);
 
         if (item.sellIn < 11) {
-            if (item.quality < 50) {
-                item.quality += 1;
-            }
+            updateQualityForItem(item, 1);
         }
 
         if (item.sellIn < 6) {
-            if (item.quality < 50) {
-                item.quality += 1;
-            }
-        }
-    }
-
-    private void updateDefaultItemQuality(Item item) {
-        if (item.quality > 0) {
-            item.quality -= 1;
+            updateQualityForItem(item, 1); 
         }
     }
 
@@ -68,13 +56,11 @@ class GildedRose {
     private void handleExpiredItem(Item item) {
         if (item.sellIn < 0) {
             if (item.name.equals(AGED_BRIE)) {
-                if (item.quality < 50) {
-                    item.quality += 1;
-                }
+                updateQualityForItem(item, 1); 
             } else if (item.name.equals(BACKSTAGE_PASSES)) {
                 item.quality = 0;
             } else if (item.quality > 0 && !item.name.equals(SULFURAS)) {
-                item.quality -= 1;
+                updateQualityForItem(item, -1); 
             }
         }
     }
