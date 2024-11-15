@@ -8,7 +8,7 @@ class GildedRose {
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
-    public GildedRose(Item[] items) {
+    public GildedRose(List<Item> items) {
         this.items = items;
     }
 
@@ -19,25 +19,25 @@ class GildedRose {
     }
 
     private void updateItem(Item item) {
-    if (item.name.equals(AGED_BRIE)) {
-        updateAgedBrieQuality(item);
-        return;
-    }
+        if (item.name.equals(AGED_BRIE)) {
+            updateAgedBrieQuality(item);
+            return;
+        }
 
-    if (item.name.equals(BACKSTAGE_PASSES)) {
-        updateBackstagePassesQuality(item);
-        return;
-    }
+        if (item.name.equals(BACKSTAGE_PASSES)) {
+            updateBackstagePassesQuality(item);
+            return;
+        }
 
-    if (item.name.equals(SULFURAS)) {
-        updateSulfurasQuality(item);
-        return;
-    }
+        if (item.name.equals(SULFURAS)) {
+            updateSulfurasQuality(item);
+            return;
+        }
 
-    updateDefaultQuality(item);
-    updateSellIn(item);
-    handleExpiredItem(item);
-}
+        updateDefaultQuality(item);
+        updateSellIn(item);
+        handleExpiredItem(item);
+    }
 
     private void updateAgedBrieQuality(Item item) {
         if (item.quality < 50) {
@@ -58,6 +58,7 @@ class GildedRose {
     }
 
     private void updateSulfurasQuality(Item item) {
+        // Sulfuras quality does not change, no need for any logic here
     }
 
     private void updateDefaultQuality(Item item) {
