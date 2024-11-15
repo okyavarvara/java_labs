@@ -74,18 +74,22 @@ class GildedRose {
     }
 
     private void handleExpiredItem(Item item) {
-        if (item.sellIn < 0) {
-            if (item.name.equals(AGED_BRIE)) {
-                if (item.quality < 50) {
-                    item.quality += 1;
-                }
-            } else if (item.name.equals(BACKSTAGE_PASSES)) {
-                item.quality = 0;
-            } else {
-                if (item.quality > 0 && !item.name.equals(SULFURAS)) {
-                    item.quality -= 1;
-                }
+    if (item.sellIn < 0) {
+        if (item.name.equals(AGED_BRIE)) {
+            if (item.quality < 50) {
+                item.quality += 1;
             }
+            return;
+        }
+
+        if (item.name.equals(BACKSTAGE_PASSES)) {
+            item.quality = 0;
+            return;
+        }
+
+        if (item.quality > 0 && !item.name.equals(SULFURAS)) {
+            item.quality -= 1;
         }
     }
+}
 }
