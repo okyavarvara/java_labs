@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-
+import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CityComponentTest {
@@ -24,10 +24,10 @@ public class CityComponentTest {
         building.add(sensor);
 
         String expectedDetails =
-            """
-            район: центральний район
-            будівля: будівля А
-            датчик: датчик температури
+                """
+                район: центральний район
+                  будівля: будівля А
+                    датчик: датчик температури
                 """;
 
         assertEquals(expectedDetails.trim(), district.displayDetails().trim());

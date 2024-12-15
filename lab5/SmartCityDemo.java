@@ -11,16 +11,16 @@ public class SmartCityDemo {
         System.out.println(district.displayDetails());
 
         CityMediator cityMediator = new CityControlCenter();
-        TransportationSystem transport = new TransportationSystem(cityMediator);
+        TransportationSystem transportation = new TransportationSystem(cityMediator);
         LightingSystem lighting = new LightingSystem(cityMediator);
         SecuritySystem security = new SecuritySystem(cityMediator);
 
-        ((CityControlCenter) cityMediator).registerSystem("Transport", transport);
+        ((CityControlCenter) cityMediator).registerSystem("Transport", transportation);
         ((CityControlCenter) cityMediator).registerSystem("Lighting", lighting);
         ((CityControlCenter) cityMediator).registerSystem("Security", security);
 
         System.out.println("робота систем через медіатор:");
-        transport.reportCongestion();
+        transportation.reportCongestion();
         lighting.adjustLights();
         security.reportEmergency();
     }

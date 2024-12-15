@@ -6,15 +6,15 @@ public class CityMediatorTest {
     @Test
     public void testRegisterAndCommunicate() {
         CityMediator cityMediator = new CityControlCenter();
-        TransportationSystem transport = new TransportationSystem(cityMediator);
+        TransportationSystem transportation = new TransportationSystem(cityMediator);
         LightingSystem lighting =  new LightingSystem(cityMediator);
 
-        ((CityControlCenter) cityMediator).registerSystem("транспорт", transport);
+        ((CityControlCenter) cityMediator).registerSystem("транспорт", transportation);
         ((CityControlCenter) cityMediator).registerSystem("освітлення", lighting);
 
-        transport.reportCongestion();
+        transportation.reportCongestion();
 
-        assertEquals("система дорожнього руху", transport.displayDetails());
+        assertEquals("система дорожнього руху", transportation.displayDetails());
         assertEquals("система освітлення", lighting.displayDetails());
     }
 }
